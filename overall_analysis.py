@@ -15,12 +15,28 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# Hide the Streamlit menu bar
 hide_streamlit_style = """
             <style>
+            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+# Set the Streamlit theme to light mode
+st.write("""
+    <style>
+    .streamlit-legacy-theme {
+        color: #262730;
+        background-color: #f0f2f6;
+    }
+    body {
+        background-image: url("your_image_url_here");
+        background-size: cover;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 df1 = pd.read_csv('Athletes_S1.csv')
 df2 = pd.read_csv('Athlete_S2.csv')
@@ -40,21 +56,6 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-def add_bg_from_url():
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://p.kindpng.com/picc/s/150-1500811_olympic-rings-white-2010-winter-olympics-hd-png.png");
-             background-attachment: fixed;
-             background-size: cover
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
-
-add_bg_from_url()
 
 st.sidebar.image("https://img.freepik.com/premium-vector/sport-icon-design_24908-6325.jpg")
 st.sidebar.title('Overall Olympics Analysis')
